@@ -1,0 +1,10 @@
+{
+  "name": "mediaruntime/php-quickstart",
+  "description": "Raw HTTP MediaRuntime PHP quickstart",
+  "type": "project",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.2",
+    "guzzlehttp/guzzle": "^7.9"
+  }
+}

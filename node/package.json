@@ -1,0 +1,16 @@
+{
+  "name": "mediaruntime-node-quickstart",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node --env-file=../.env src/run.mjs",
+    "check": "node --check src/run.mjs"
+  },
+  "dependencies": {
+    "@mediaruntime/node": "^1.2.0"
+  }
+}
