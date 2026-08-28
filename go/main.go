@@ -30,6 +30,7 @@ type jobStatusResponse struct {
 	} `json:"bundle"`
 }
 
+// requiredEnv fails early instead of allowing a request with missing credentials.
 func requiredEnv(name string) string {
 	value := strings.TrimSpace(os.Getenv(name))
 	if value == "" {
@@ -38,6 +39,7 @@ func requiredEnv(name string) string {
 	return value
 }
 
+// randomID gives each quickstart invocation its own logical operation ID.
 func randomID() string {
 	value := make([]byte, 12)
 	if _, err := rand.Read(value); err != nil {
@@ -46,6 +48,7 @@ func randomID() string {
 	return hex.EncodeToString(value)
 }
 
+// apiRequest applies the server-side API key consistently to authenticated calls.
 func apiRequest(ctx context.Context, client *http.Client, apiKey, method, url string, body io.Reader) (*http.Response, error) {
 	request, err := http.NewRequestWithContext(ctx, method, url, body)
 	if err != nil {
@@ -59,6 +62,7 @@ func apiRequest(ctx context.Context, client *http.Client, apiKey, method, url st
 	return client.Do(request)
 }
 
+// requireSuccess preserves a bounded portion of the API error for diagnostics.
 func requireSuccess(response *http.Response) error {
 	if response.StatusCode >= 200 && response.StatusCode < 300 {
 		return nil
@@ -68,6 +72,7 @@ func requireSuccess(response *http.Response) error {
 }
 
 func main() {
+	// Keep the API key in a server-side secret store; never ship it to a browser.
 	apiKey := requiredEnv("MEDIARUNTIME_API_KEY")
 	source := requiredEnv("MEDIARUNTIME_SOURCE")
 	baseURL := strings.TrimRight(os.Getenv("MEDIARUNTIME_BASE_URL"), "/")
@@ -83,6 +88,8 @@ func main() {
 		outputAlias = "video.web"
 	}
 
+	// A source may be public or a time-limited signed read URL. The alias expands
+	// to a maintained output recipe before MediaRuntime executes the job.
 	requestBody, err := json.Marshal(map[string]any{
 		"source":   source,
 		"outputs":  []string{outputAlias},
@@ -103,6 +110,8 @@ func main() {
 	request.Header.Set("X-API-Key", apiKey)
 	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set("Accept", "application/json")
+	// A random key makes every quickstart run new. Production systems should use
+	// a stable key derived from their own asset or operation identifier.
 	request.Header.Set("Idempotency-Key", "quickstart:go:"+randomID())
 	response, err := client.Do(request)
 	if err != nil {
@@ -120,6 +129,8 @@ func main() {
 	}
 	fmt.Printf("Created %s\n", created.JobID)
 
+	// Polling keeps the standalone example simple. In production, persist the job
+	// ID and normally consume signed terminal webhooks instead.
 	var terminal jobStatusResponse
 	for {
 		response, err = apiRequest(ctx, client, apiKey, http.MethodGet, baseURL+"/v1/jobs/"+created.JobID, nil)
@@ -150,6 +161,8 @@ func main() {
 		panic(fmt.Sprintf("job ended with %s: %s", terminal.Status, terminal.Error))
 	}
 
+	// The terminal URL is signed and time-limited. It downloads one ZIP containing
+	// every requested rendition, report, subtitle, and metadata file.
 	downloadRequest, err := http.NewRequestWithContext(ctx, http.MethodGet, terminal.Bundle.DownloadURL, nil)
 	if err != nil {
 		panic(err)
@@ -162,6 +175,7 @@ func main() {
 	if err := requireSuccess(downloadResponse); err != nil {
 		panic(err)
 	}
+	// Create an optional parent directory before streaming the bundle to disk.
 	if err := os.MkdirAll(filepath.Dir(filepath.Clean(downloadPath)), 0o755); err != nil && filepath.Dir(filepath.Clean(downloadPath)) != "." {
 		panic(err)
 	}

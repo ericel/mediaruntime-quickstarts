@@ -7,6 +7,7 @@ require __DIR__ . '/vendor/autoload.php';
 use GuzzleHttp\Client;
 use RuntimeException;
 
+// Fail before making an API request when a required server-side setting is absent.
 function requiredEnv(string $name): string
 {
     $value = trim((string) getenv($name));
@@ -16,6 +17,7 @@ function requiredEnv(string $name): string
     return $value;
 }
 
+// Keep the API key in a server-side secret store; never expose it in browser code.
 $apiKey = requiredEnv('MEDIARUNTIME_API_KEY');
 $source = requiredEnv('MEDIARUNTIME_SOURCE');
 $baseUrl = rtrim((string) (getenv('MEDIARUNTIME_BASE_URL') ?: 'https://mediaruntime.com'), '/');
@@ -31,7 +33,11 @@ $client = new Client([
     ],
 ]);
 
+// A source may be public or a time-limited signed read URL. The output alias
+// expands to a maintained artifact set before MediaRuntime executes the job.
 $response = $client->post('/v1/jobs', [
+    // This quickstart intentionally creates a new logical job on every run.
+    // Production code should derive this key from a stable asset or operation ID.
     'headers' => ['Idempotency-Key' => 'quickstart:php:' . bin2hex(random_bytes(12))],
     'json' => [
         'source' => $source,
@@ -43,6 +49,8 @@ $created = json_decode((string) $response->getBody(), true, flags: JSON_THROW_ON
 $jobId = (string) $created['job_id'];
 printf("Created %s\n", $jobId);
 
+// Polling keeps this standalone example simple. Production services should
+// persist $jobId and normally consume signed terminal webhooks instead.
 $deadline = time() + (15 * 60);
 do {
     if (time() >= $deadline) {
@@ -60,6 +68,8 @@ if ($status !== 'COMPLETED' || $bundleUrl === '') {
     throw new RuntimeException("Job {$jobId} ended with {$status}");
 }
 
+// The signed, time-limited URL returns one ZIP containing every requested
+// rendition, report, subtitle and metadata file. Guzzle streams it to disk.
 $downloadClient = new Client(['timeout' => 600, 'allow_redirects' => true]);
 $downloadClient->get($bundleUrl, ['sink' => $downloadPath]);
 printf("Downloaded %s bundle to %s\n", $jobId, $downloadPath);
