@@ -7,6 +7,8 @@ Small, runnable examples for submitting MediaRuntime jobs, waiting for completio
 | Directory | Client | Status |
 | --- | --- | --- |
 | [`node/`](node/) | Official `@mediaruntime/node` SDK | Supported |
+| [`stickers-node/`](stickers-node/) | Hosted Sticker Runtime, Node.js API-key example | Supported |
+| [`stickers-python/`](stickers-python/) | Hosted Sticker Runtime, Python API-key example | Supported |
 | [`python/`](python/) | Official `mediaruntime` SDK | Supported |
 | [`go/`](go/) | Standard-library HTTP client | API example; no official Go SDK yet |
 | [`php/`](php/) | Guzzle HTTP client | API example; no official PHP SDK yet |

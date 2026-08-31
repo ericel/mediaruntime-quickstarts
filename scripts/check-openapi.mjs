@@ -21,4 +21,27 @@ requireValue(document.components?.schemas?.CreateJobRequest?.properties?.source,
 requireValue(!document.components?.schemas?.CreateJobRequest?.properties?.webhook_url, "Legacy per-job webhook URL became public");
 requireValue(Object.keys(document.webhooks ?? {}).length === 4, "Expected four terminal webhook contracts");
 
+// Keep the quickstarts pinned to the complete Sticker Runtime boundary: trusted
+// collection management, dual-auth reads, private resolution, usage, and token exchange.
+requireValue(
+  document.paths?.["/v1/sticker-collections"]?.post?.operationId === "createStickerCollection",
+  "Sticker collection creation contract is missing",
+);
+requireValue(
+  document.paths?.["/v1/stickers/search"]?.get?.operationId === "searchRuntimeStickers",
+  "Sticker search contract is missing",
+);
+requireValue(
+  document.paths?.["/v1/stickers/{sticker_id}/assets/{variant}"]?.get?.operationId === "resolveRuntimeStickerVariant",
+  "Sticker asset-resolution contract is missing",
+);
+requireValue(
+  document.components?.securitySchemes?.StickerClientToken?.scheme === "bearer",
+  "Scoped Sticker Runtime bearer scheme is missing",
+);
+requireValue(
+  document.paths?.["/v1/sticker-runtime/usage/current"]?.get?.security?.length === 1,
+  "Sticker Runtime usage must remain server-authenticated",
+);
+
 console.log(`OpenAPI contract looks current: ${url}`);
