@@ -80,6 +80,8 @@ jobs:
       - run: composer validate --strict
       - run: composer install --no-interaction --no-progress --prefer-dist
       - run: php -l run.php
+      - run: php -l ../tutorials/01-php-video-compression/compress.php
+      - run: python3 ../tutorials/01-php-video-compression/test_example.py
 
   webhooks:
     runs-on: ubuntu-latest
