@@ -84,6 +84,7 @@ jobs:
       - run: php -l ../tutorials/01-php-video-compression/compress.php
       - run: python3 ../tutorials/01-php-video-compression/test_example.py
       - run: python3 ../tutorials/03-php-video-thumbnails/test_example.py
+      - run: python3 ../tutorials/05-php-audio-conversion/test_example.py
 
   webhooks:
     runs-on: ubuntu-latest

@@ -23,3 +23,5 @@ Continue with [Convert MP4 to HLS (M3U8) in Laravel](../tutorials/02-laravel-hls
 Then try [Generate Video Thumbnails Using PHP](../tutorials/03-php-video-thumbnails/README.md): upload a video, save a poster frame, and display it with explicit temporary-output retention guidance.
 
 Then build [a Video Upload and Processing Pipeline in Laravel](../tutorials/04-laravel-video-pipeline/README.md), with signed callbacks, durable inbox/queue writes, recovery checks and private output storage.
+
+Next, [Convert Audio Files in PHP Without Running FFmpeg](../tutorials/05-php-audio-conversion/README.md): WAV to AAC/M4A, with private saved-output playback and seeking in the browser.

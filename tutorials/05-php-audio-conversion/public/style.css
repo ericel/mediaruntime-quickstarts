@@ -1,0 +1,211 @@
+* {
+  box-sizing:border-box;
+}
+body {
+  margin:0;
+  background:#f3f3ef;
+  color:#202125;
+  font:16px system-ui,sans-serif;
+}
+main {
+  max-width:1400px;
+  margin:auto;
+  padding:36px 52px;
+}
+header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #ccc;
+  padding-bottom:24px;
+}
+header span,.eyebrow {
+  font:12px ui-monospace,monospace;
+  letter-spacing:2px;
+}
+.brand {
+  font-size:26px;
+  font-weight:800;
+  color:inherit;
+  text-decoration:none;
+}
+.hero {
+  padding:38px 0 32px;
+  position:relative;
+}
+.eyebrow {
+  color:#3659ef;
+  font-weight:700;
+}
+h1 {
+  font-size:64px;
+  line-height:1.05;
+  margin:18px 0;
+  letter-spacing:-3px;
+}
+h1 span {
+  color:#3659ef;
+}
+.hero p {
+  font-size:19px;
+  color:#60646c;
+}
+.tags {
+  position:absolute;
+  right:0;
+  bottom:40px;
+  display:flex;
+  gap:10px;
+}
+.tags b {
+  background:#dbf07b;
+  padding:14px;
+  font-size:14px;
+}
+.tags b:nth-child(2) {
+  background:#b8a8f9;
+}
+.tags b:nth-child(3) {
+  background:#92cff3;
+}
+.workspace {
+  display:grid;
+  grid-template-columns:340px 1fr;
+  border:1px solid #cfd1ce;
+  background:white;
+}
+.upload {
+  padding:28px;
+  border-right:1px solid #cfd1ce;
+}
+.results {
+  padding:28px;
+}
+h2 {
+  font-size:25px;
+  letter-spacing:-.7px;
+  margin:14px 0 18px;
+}
+p {
+  line-height:1.65;
+  color:#60646c;
+}
+input {
+  width:100%;
+  padding:18px 0;
+  font:14px system-ui;
+}
+button {
+  background:#202125;
+  color:white;
+  border:0;
+  padding:17px;
+  width:100%;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
+}
+button span {
+  float:right;
+}
+.small {
+  font-size:12px;
+}
+.notice {
+  color:#296428;
+  font-size:14px;
+}
+.empty {
+  background:#f3f3ef;
+  min-height:190px;
+  padding:42px;
+  color:#6b6f75;
+  line-height:2;
+}
+article+article {
+  margin-top:28px;
+  border-top:1px solid #ddd;
+  padding-top:20px;
+}
+.row {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+h3 {
+  font-size:16px;
+  overflow-wrap:anywhere;
+}
+.status {
+  font:12px ui-monospace,monospace;
+  text-transform:uppercase;
+  background:#dbf07b;
+  padding:9px 12px;
+}
+.message {
+  font-size:14px;
+  margin:0 0 16px;
+}
+video {
+  width:100%;
+  max-height:410px;
+  background:#101826;
+}
+video[hidden] {
+  display:none;
+}
+.player-info {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:16px;
+  gap:16px;
+}
+.player-info[hidden] {
+  display:none;
+}
+.badge {
+  font:11px ui-monospace,monospace;
+  color:#3659ef;
+}
+.playlist {
+  font-size:13px;
+  color:#202125;
+}
+.renditions {
+  font:12px ui-monospace,monospace;
+  color:#6b6f75;
+  margin-top:12px;
+}
+footer {
+  padding:24px 0;
+  font-size:12px;
+  color:#60646c;
+}
+@media(max-width:800px) {
+  main {
+    padding:20px;
+  }
+  .workspace {
+    grid-template-columns:1fr;
+  }
+  .upload {
+    border-right:0;
+    border-bottom:1px solid #ddd;
+  }
+  .tags {
+    position:static;
+    flex-wrap:wrap;
+  }
+  h1 {
+    font-size:48px;
+  }
+  header span {
+    display:none;
+  }
+}
+
+.hero {padding:24px 0}h1 {font-size:52px}h1 em {font-style:normal;color:#3659ef}.workspace {grid-template-columns:330px 1fr}.upload,.results {padding:24px}label {display:block;font-size:14px;margin:16px 0}input[type=number] {border:1px solid #ccc;padding:12px;margin-top:8px}img {width:100%;max-height:330px;object-fit:contain;background:#101826}img[hidden],.details[hidden]{display:none}.details{display:flex;justify-content:space-between;margin-top:12px;font-size:13px}.details a{color:#3659ef}aside {background:#e8e2fa;border-left:4px solid #7659d2;margin-top:20px;padding:18px 24px;font-size:14px}aside p{margin:6px 0}aside a{color:#343156}.hero p{font-size:17px}button:disabled{opacity:.5}footer{padding:14px 0}@media(max-width:800px){.workspace{grid-template-columns:1fr}h1{font-size:38px}}
+
+.player{padding:22px;background:#191b20;color:#f3f3ef}.player[hidden]{display:none}.sound-label{display:flex;justify-content:space-between;font:12px ui-monospace,monospace;letter-spacing:1px;color:#dbf07b}canvas{width:100%;height:140px;display:block}audio{width:100%;height:44px}.playback{margin:10px 0 0;color:#bbc3cd;font-size:12px}.sizes{font:12px ui-monospace,monospace}.upload ol{padding-left:20px;font-size:13px;color:#6b6f75;line-height:2.2}.tags{bottom:50px}h1{font-size:50px}.hero{padding:22px 0}.details{gap:12px;flex-wrap:wrap}
