@@ -76,12 +76,14 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: "8.2"
+          extensions: curl, zip, fileinfo
           tools: composer:v2
       - run: composer validate --strict
       - run: composer install --no-interaction --no-progress --prefer-dist
       - run: php -l run.php
       - run: php -l ../tutorials/01-php-video-compression/compress.php
       - run: python3 ../tutorials/01-php-video-compression/test_example.py
+      - run: python3 ../tutorials/03-php-video-thumbnails/test_example.py
 
   webhooks:
     runs-on: ubuntu-latest
