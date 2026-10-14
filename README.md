@@ -29,6 +29,12 @@ Small, runnable examples for submitting MediaRuntime jobs, waiting for completio
 
 Never put a production API key in frontend, mobile, or public repository code. The examples read credentials only from environment variables.
 
+## Clipping workflow
+
+See [Clipping: analyze, review, render](clipping.md) for the manual no-model path,
+optional Whisper analysis, source-timed caption reuse, and SDK/CLI 1.4.0 release
+requirements. The 1.4.0 packages are prepared locally; publication is still pending.
+
 ## Output model
 
 Each completed job exposes one expiring download URL for its canonical ZIP bundle. The bundle may contain a video, poster, subtitles, renditions, reports, or a complete streaming directory tree. Examples save that bundle as `outputs.zip`; they do not assume one job produces one media file.

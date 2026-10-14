@@ -123,3 +123,21 @@ jobs:
       - run: cp .env.example .env
       - run: php artisan key:generate
       - run: composer test
+
+  laravel-pipeline:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tutorials/04-laravel-video-pipeline
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: curl, zip, pdo_sqlite, mbstring, xml
+          tools: composer:v2
+      - run: composer validate --strict
+      - run: composer install --no-interaction --no-progress --prefer-dist
+      - run: cp .env.example .env
+      - run: php artisan key:generate
+      - run: composer test
