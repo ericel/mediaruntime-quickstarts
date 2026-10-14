@@ -41,6 +41,30 @@ Use a dedicated test account when changing webhook destinations; registering an 
 
 The callback lives in Laravel's stateless API route group. Normal browser upload routes retain CSRF protection.
 
+## Optional local callback demonstration
+
+The recording uses **real MediaRuntime processing and browser playback**, with an explicitly labeled **local signed callback simulation**. It does not demonstrate provider-to-endpoint delivery. To reproduce that mode without a public webhook endpoint, use a local-only signing secret and set:
+
+```dotenv
+APP_ENV=local
+APP_URL=http://127.0.0.1:8000
+DEMO_CALLBACK_SIMULATION=true
+MEDIARUNTIME_DELIVER_WEBHOOK=false
+MEDIARUNTIME_WEBHOOK_SECRET=YOUR_RANDOM_LOCAL_DEMO_SECRET
+```
+
+Restart the web server and worker after changing configuration. Submit a video, then run:
+
+```bash
+php artisan media:simulate-callback
+# Or target a specific local video record:
+php artisan media:simulate-callback LOCAL_VIDEO_UUID
+```
+
+The command checks the real job's status first. If processing is still pending, run it again later. Once completed, it signs a local event and sends it to the same receiver used for real callbacks. The command refuses non-local environments and non-localhost destinations; the page displays a simulation banner. Repeating it reuses the event ID so the inbox can deduplicate delivery. Leave the scheduler running for normal recovery; to demonstrate callback completion specifically, invoke the command before a recovery pass finishes the video.
+
+Use the provider-issued secret, turn simulation off, and follow the real-callback setup above when testing external delivery. The local demo secret is not a provider credential.
+
 ## Verify, persist, acknowledge
 
 The provider signature covers the exact raw body:

@@ -29,7 +29,7 @@ class PipelineTest extends TestCase
         parent::setUp();
         $this->root = sys_get_temp_dir().'/pipeline-'.bin2hex(random_bytes(5));
         File::ensureDirectoryExists($this->root);
-        config(['media.root' => $this->root, 'media.disk' => 'local', 'media.api_key' => 'fixture-api-key', 'media.webhook_secret' => 'fixture-signing-secret', 'media.base_url' => 'https://api.example.test', 'queue.connections.database.connection' => null, 'queue.connections.database.after_commit' => false]);
+        config(['media.root' => $this->root, 'media.disk' => 'local', 'media.api_key' => 'fixture-api-key', 'media.deliver_webhook' => true, 'media.simulate_callbacks' => false, 'media.webhook_secret' => 'fixture-signing-secret', 'media.base_url' => 'https://api.example.test', 'queue.connections.database.connection' => null, 'queue.connections.database.after_commit' => false]);
         Storage::fake('local');
         Http::preventStrayRequests();
     }
@@ -236,11 +236,11 @@ class PipelineTest extends TestCase
         $v = $this->video();
         Storage::shouldReceive('disk')->once()->with('local')->andReturn(Mockery::mock()->shouldReceive('put')->once()->andReturn(false)->getMock());
         try {
-            (new AdvanceVideo($v->id, 'webhook'))->handle($this->completedApi(),new Mp4Archive);
+            (new AdvanceVideo($v->id, 'webhook'))->handle($this->completedApi(), new Mp4Archive);
             $this->fail('Expected failure');
         } catch (\RuntimeException) {
         }
-        $this->assertSame('saving',$v->fresh()->status);
+        $this->assertSame('saving', $v->fresh()->status);
         $this->assertNull($v->fresh()->object_key);
     }
 }
