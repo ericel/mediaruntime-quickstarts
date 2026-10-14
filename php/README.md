@@ -17,3 +17,5 @@ The production API URL is built in. Set `MEDIARUNTIME_BASE_URL` only when testin
 ## PHP tutorial series
 
 Start with [How to Compress Videos in PHP Without Installing FFmpeg](../tutorials/01-php-video-compression/README.md) for a dependency-free cURL example with polling, safe resume, ZIP download, and offline integration tests.
+
+Continue with [Convert MP4 to HLS (M3U8) in Laravel](../tutorials/02-laravel-hls/README.md) for a queued upload-to-browser-playback application.

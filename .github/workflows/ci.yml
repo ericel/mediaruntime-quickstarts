@@ -103,3 +103,21 @@ jobs:
           cache-dependency-path: webhooks/python-fastapi/requirements.txt
       - run: python -m pip install -r webhooks/python-fastapi/requirements.txt
       - run: python -m py_compile webhooks/python-fastapi/app.py
+
+  laravel-hls:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tutorials/02-laravel-hls
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: curl, zip, pdo_sqlite, mbstring, xml
+          tools: composer:v2
+      - run: composer validate --strict
+      - run: composer install --no-interaction --no-progress --prefer-dist
+      - run: cp .env.example .env
+      - run: php artisan key:generate
+      - run: composer test

@@ -1,0 +1,60 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "mediaruntime/laravel-hls-tutorial",
+    "type": "project",
+    "description": "Upload an MP4, queue MediaRuntime HLS processing, and play the result in Laravel.",
+    "keywords": [
+        "laravel",
+        "framework"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.3",
+        "ext-curl": "*",
+        "ext-zip": "*",
+        "ext-pdo": "*",
+        "laravel/framework": "^13.17"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.6",
+        "phpunit/phpunit": "^12.5.12",
+        "laravel/pint": "^1.27"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "test": [
+            "@php artisan config:clear --ansi",
+            "@php artisan test"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        },
+        "platform": {
+            "php": "8.3.0"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
