@@ -16,6 +16,10 @@ Small, runnable examples for submitting MediaRuntime jobs, waiting for completio
 | [`webhooks/python-fastapi/`](webhooks/python-fastapi/) | FastAPI webhook receiver | Supported SDK verifier |
 | [`postman/`](postman/) | Import the live OpenAPI contract | No code required |
 
+## Node.js video tutorials
+
+Start with [Video Upload & Processing](tutorials/nodejs/01-video-upload-processing/): Express multipart uploads, the official Node SDK, asynchronous jobs, saved MP4 output and real browser playback. Includes installation instructions, recovery handling, retention notes and offline integration tests.
+
 ## Prerequisites
 
 1. Create an API key in your MediaRuntime account.
