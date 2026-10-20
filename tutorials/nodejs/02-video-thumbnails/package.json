@@ -1,0 +1,20 @@
+{
+  "name": "mediaruntime-node-thumbnails-tutorial",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node --env-file=.env src/server.mjs",
+    "test": "node --test test/*.test.mjs",
+    "check": "node --check src/server.mjs && node --check src/pipeline.mjs && node --check src/bundle.mjs && node --check public/app.js"
+  },
+  "dependencies": {
+    "@mediaruntime/node": "1.5.0",
+    "express": "^5.1.0",
+    "multer": "^2.0.2",
+    "yauzl": "^3.2.0"
+  }
+}

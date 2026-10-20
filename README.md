@@ -20,6 +20,8 @@ Small, runnable examples for submitting MediaRuntime jobs, waiting for completio
 
 Start with [Video Upload & Processing](tutorials/nodejs/01-video-upload-processing/): Express multipart uploads, the official Node SDK, asynchronous jobs, saved MP4 output and real browser playback. Includes installation instructions, recovery handling, retention notes and offline integration tests.
 
+Continue with [Generate Video Thumbnails](tutorials/nodejs/02-video-thumbnails/): choose a timestamp, submit a poster job with the official SDK, save the JPEG from its ZIP bundle, and display/download it in the browser. Includes retention guidance and ten offline checks.
+
 ## Prerequisites
 
 1. Create an API key in your MediaRuntime account.

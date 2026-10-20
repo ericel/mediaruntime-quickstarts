@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Thumbnail Lab · MediaRuntime + Node.js</title>
+  <link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
+</head>
+<body>
+<header><a href="/" class="brand"><span>▷</span> MediaRuntime</a><span class="edition">NODE.JS TUTORIALS <b>02</b></span></header>
+<main>
+  <div class="intro"><div><p class="eyebrow">VIDEO IN. A FRAME OUT.</p><h1>Find your frame. <em>Keep it.</em></h1><p class="subtitle">Generate a video thumbnail with Express and the official Node SDK.</p></div><span class="local">● LOCAL DEMO</span></div>
+  <div class="workspace">
+    <section class="upload-card">
+      <div class="section-label"><span>01 / CHOOSE THE MOMENT</span><span>MP4 · UP TO 20 MB</span></div>
+      <form id="upload">
+        <label class="file-label" for="video">Choose an MP4 <span id="filename">No file selected</span></label>
+        <input id="video" name="video" type="file" accept="video/mp4,.mp4" required>
+        <div class="source-wrap"><video id="source" controls muted playsinline preload="metadata" hidden></video><div id="source-empty"><span>▶</span><p>Your video preview</p></div></div>
+        <div class="timestamp-row"><label for="timestamp">Frame time <span>seconds</span></label><input id="timestamp" name="timestamp" type="number" min="0" max="600" step="0.001" value="1.5" required><button id="use-frame" type="button" disabled>Use current frame</button></div>
+        <p id="source-info">Choose a moment inside the video. The preview stays in your browser until you submit.</p>
+        <button id="submit" type="submit" disabled>Generate thumbnail <span>↗</span></button>
+      </form>
+      <p id="form-error" role="alert"></p>
+      <div class="sdk">@mediaruntime/node <span>OFFICIAL SDK</span></div>
+      <p class="billing">Each submission is a real job using your account credits.</p>
+    </section>
+    <section class="result-card">
+      <div class="section-label"><span>02 / YOUR SAVED THUMBNAIL</span><span id="badge" class="badge">WAITING FOR INPUT</span></div>
+      <div id="empty"><span>▧</span><h2>A frame worth keeping.</h2><p>Choose → extract → download → display.</p></div>
+      <div id="progress" hidden><div class="spinner"></div><h2 id="status-title">Queued</h2><p>MediaRuntime is extracting your chosen frame.</p></div>
+      <div id="result" hidden>
+        <a id="open-image" target="_blank" rel="noopener"><img id="poster" alt="Generated video thumbnail"></a>
+        <div class="file-meta"><strong id="result-name"></strong><span id="dimensions"></span></div>
+        <p id="job-id"></p>
+        <div class="actions"><a id="download" class="download" download="thumbnail.jpg">Download JPEG ↓</a><span id="saved-label">Saved on your disk</span></div>
+      </div>
+      <p id="job-error" role="status"></p>
+    </section>
+  </div>
+  <div class="steps"><span>1 <b>Pick a timestamp</b></span><i>→</i><span>2 <b>SDK poster job</b></span><i>→</i><span>3 <b>Save JPEG</b></span><i>→</i><span>4 <b>Display & download</b></span></div>
+  <aside><strong>Save it before it expires.</strong> MediaRuntime outputs and signed links are temporary. Download promptly. Your own copies need their own retention policy.</aside>
+  <footer><span>Single-user localhost example · Polling enabled</span><span>Bunny excerpt © 2008 Blender Foundation · CC BY 3.0</span></footer>
+</main>
+</body></html>
