@@ -22,6 +22,8 @@ Start with [Video Upload & Processing](tutorials/nodejs/01-video-upload-processi
 
 Continue with [Generate Video Thumbnails](tutorials/nodejs/02-video-thumbnails/): choose a timestamp, submit a poster job with the official SDK, save the JPEG from its ZIP bundle, and display/download it in the browser. Includes retention guidance and ten offline checks.
 
+Then [Convert Audio with Node.js](tutorials/nodejs/03-audio-conversion/): upload WAV, request `audio.web`, save the M4A, and verify real playback, seeking and downloads. Includes temporary-output retention guidance and ten offline integration tests.
+
 ## Prerequisites
 
 1. Create an API key in your MediaRuntime account.
