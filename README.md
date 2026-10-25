@@ -24,6 +24,8 @@ Continue with [Generate Video Thumbnails](tutorials/nodejs/02-video-thumbnails/)
 
 Then [Convert Audio with Node.js](tutorials/nodejs/03-audio-conversion/): upload WAV, request `audio.web`, save the M4A, and verify real playback, seeking and downloads. Includes temporary-output retention guidance and ten offline integration tests.
 
+Next, [Build a Reliable Webhook Pipeline](tutorials/nodejs/04-reliable-webhooks/): verify signed callbacks with the SDK, commit them to PostgreSQL, process them with a separate worker, and save an MP4 for playback. Includes concurrent deduplication, bounded retries, dead-letter handling, retention guidance, and PostgreSQL-backed integration tests.
+
 ## Prerequisites
 
 1. Create an API key in your MediaRuntime account.
