@@ -26,6 +26,8 @@ Then [Convert Audio with Node.js](tutorials/nodejs/03-audio-conversion/): upload
 
 Next, [Build a Reliable Webhook Pipeline](tutorials/nodejs/04-reliable-webhooks/): verify signed callbacks with the SDK, commit them to PostgreSQL, process them with a separate worker, and save an MP4 for playback. Includes concurrent deduplication, bounded retries, dead-letter handling, retention guidance, and PostgreSQL-backed integration tests.
 
+Then [Media Moderation with Node.js](tutorials/nodejs/05-media-moderation/): request visual checks with the official SDK, receive a verified callback, save the report and MP4, and enforce a separate reviewer publishing decision. Includes report/block mode guidance, advisory-check handling, retention notes, and 19 offline policy/integration checks.
+
 ## Prerequisites
 
 1. Create an API key in your MediaRuntime account.
