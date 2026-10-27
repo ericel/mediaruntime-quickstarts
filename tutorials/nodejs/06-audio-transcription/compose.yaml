@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: tutorial
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set a local database password}
+      POSTGRES_DB: mediaruntime_transcription
+    ports:
+      - '127.0.0.1:5432:5432'
+    volumes:
+      - ${PG_DATA_DIR:-./var/postgres}:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U tutorial -d mediaruntime_transcription']
+      interval: 5s
+      timeout: 5s
+      retries: 10

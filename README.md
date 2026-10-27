@@ -28,6 +28,8 @@ Next, [Build a Reliable Webhook Pipeline](tutorials/nodejs/04-reliable-webhooks/
 
 Then [Media Moderation with Node.js](tutorials/nodejs/05-media-moderation/): request visual checks with the official SDK, receive a verified callback, save the report and MP4, and enforce a separate reviewer publishing decision. Includes report/block mode guidance, advisory-check handling, retention notes, and 19 offline policy/integration checks.
 
+Next, [Build an Automated Audio Transcription Pipeline](tutorials/nodejs/06-audio-transcription/): upload speech in the browser, submit `audio.transcription` with the official SDK, verify a signed completion callback, save M4A/SRT/VTT, and search or seek the returned transcript. Includes temporary-output retention guidance and 20 PostgreSQL/parser checks.
+
 ## Prerequisites
 
 1. Create an API key in your MediaRuntime account.

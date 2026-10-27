@@ -1,0 +1,5 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {parseVtt} from '../src/transcript.mjs';
+test('parses hours, cue IDs, CRLF and cue settings',()=>{assert.deepEqual(parseVtt('\ufeffWEBVTT\r\n\r\n1\r\n00:01.500 --> 00:03.250 align:start\r\nHello world.\r\n\r\n2\r\n01:00:01.000 --> 01:00:02.000\r\nLater.'),[{start:1.5,end:3.25,text:'Hello world.'},{start:3601,end:3602,text:'Later.'}]);});
+test('empty captions and notes are accepted without invented transcript',()=>{assert.deepEqual(parseVtt('WEBVTT\n\nNOTE generated file\nNo cues\n'),[]);});
+test('rejects malformed, reversed, unordered and oversized captions',()=>{for(const value of ['not VTT','WEBVTT\n\n00:99.000 --> 00:01.000\nBad','WEBVTT\n\n00:02.000 --> 00:01.000\nBad','WEBVTT\n\n00:02.000 --> 00:03.000\nA\n\n00:01.000 --> 00:02.000\nB','WEBVTT\n\n'+ 'x'.repeat(2*1024*1024)])assert.throws(()=>parseVtt(value));});
+test('untrusted cue markup is returned as plain data, never executed',()=>{const text='<img src=x onerror=alert(1)> & words';assert.equal(parseVtt(`WEBVTT\n\n00:00.000 --> 00:01.000\n${text}`)[0].text,text);});
