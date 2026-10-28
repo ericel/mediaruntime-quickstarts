@@ -32,6 +32,8 @@ Next, [Build an Automated Audio Transcription Pipeline](tutorials/nodejs/06-audi
 
 Then [Generate Video Summaries & AI Chapters](tutorials/nodejs/07-video-summaries-chapters/): transcribe an MP4 with MediaRuntime, generate a separate local Ollama draft from saved cues, review the summary and chapter boundaries, and export YouTube chapters. Includes independent model retries, timestamp validation, approval checks, retention guidance and 31 automated tests.
 
+Then [Build an Automated Video Watermarking Pipeline](tutorials/nodejs/08-video-watermarking/): configure the account PNG in a visible settings UI, submit a Premium watermarked job through the official SDK, save its MP4, and compare original and output in the browser. Includes explicit account-wide setup, job recovery, retention guidance and ten integration checks.
+
 ## Prerequisites
 
 1. Create an API key in your MediaRuntime account.
