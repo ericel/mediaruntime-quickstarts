@@ -30,6 +30,8 @@ Then [Media Moderation with Node.js](tutorials/nodejs/05-media-moderation/): req
 
 Next, [Build an Automated Audio Transcription Pipeline](tutorials/nodejs/06-audio-transcription/): upload speech in the browser, submit `audio.transcription` with the official SDK, verify a signed completion callback, save M4A/SRT/VTT, and search or seek the returned transcript. Includes temporary-output retention guidance and 20 PostgreSQL/parser checks.
 
+Then [Generate Video Summaries & AI Chapters](tutorials/nodejs/07-video-summaries-chapters/): transcribe an MP4 with MediaRuntime, generate a separate local Ollama draft from saved cues, review the summary and chapter boundaries, and export YouTube chapters. Includes independent model retries, timestamp validation, approval checks, retention guidance and 31 automated tests.
+
 ## Prerequisites
 
 1. Create an API key in your MediaRuntime account.
